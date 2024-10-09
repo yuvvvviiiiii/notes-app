@@ -1,34 +1,73 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import HomePage from './pages/HomePage';
+import Modal from './components/Modal';
+import NotePage from './pages/NotePage';
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+
+  const [groups, setGroups] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  useEffect(() => {
+    const storedGroups = JSON.parse(localStorage.getItem('groups')) || [];
+    setGroups(storedGroups); 
+  }, []);
+
+  const addGroup = (group) => {
+    const newGroup = {
+      id: new Date().getTime(),
+      name: group.groupName,
+      color: group.color,
+      notes: [],
+    }
+    const updatedGroups = [...groups, newGroup];
+    setGroups(updatedGroups);
+
+    localStorage.setItem('groups', JSON.stringify(updatedGroups));
+  };
+
+  const updatedGroupNotes = (groupId, newNotes) => {
+    const updatedGroups = groups.map(group => {
+      if(group.id === groupId) {
+        return { ...group, notes: newNotes};
+      }
+      return group;
+    }) 
+
+    setGroups(updatedGroups);
+    localStorage.setItem('groups', JSON.stringify(updatedGroups));
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <BrowserRouter>
+    <div>
+      <Routes>
+        {/* HomePage Route */}
+        <Route path='/' element={<HomePage 
+            groups={groups}
+            openModal = {() => setIsModalOpen(true)}  
+          />
+        }
+        />
+        {/* notespage Route */}
+        <Route path='/notes/:groupId' element={<NotePage 
+          groups={groups}
+          openModal={() => setIsModalOpen(true)}
+          updatedGroupNotes={updatedGroupNotes}
+        />}/>
+      </Routes>   
+      {/* modal */}
+      {
+        isModalOpen && (
+          <Modal 
+          closeModal={() => setIsModalOpen(false)}
+          addGroup={addGroup}
+          />
+        )
+      }
+    </div>
+    </BrowserRouter>
   )
 }
 
