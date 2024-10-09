@@ -54,6 +54,7 @@ body{
 .group-list{
   overflow-y: scroll; 
   max-height: 572px;
+  overflow-x: hidden;
 }
 
 .group-list::-webkit-scrollbar {
