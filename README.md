@@ -16,11 +16,14 @@ NotesPage: ![Screenshot 2024-10-09 162442](https://github.com/user-attachments/a
 
 
 # Mobile View:
-HomePage:![Screenshot 2024-10-09 162550](https://github.com/user-attachments/assets/b23067d1-cc01-4941-b34a-21e783363900)
+HomePage:
+![Screenshot 2024-10-09 162550](https://github.com/user-attachments/assets/b23067d1-cc01-4941-b34a-21e783363900)
 
-Modal: ![Screenshot 2024-10-09 162613](https://github.com/user-attachments/assets/729d305d-56cd-4c66-bb04-0cf6b5402919)
+Modal: 
+![Screenshot 2024-10-09 162613](https://github.com/user-attachments/assets/729d305d-56cd-4c66-bb04-0cf6b5402919)
 
-NotesPage: ![Screenshot 2024-10-09 162922](https://github.com/user-attachments/assets/b4f7a302-222e-4e1f-8f98-9c32a01fc74f)
+NotesPage: 
+![Screenshot 2024-10-09 162922](https://github.com/user-attachments/assets/b4f7a302-222e-4e1f-8f98-9c32a01fc74f)
 
 
 
