@@ -110,7 +110,7 @@ const NotePage = ({ groups, openModal, updatedGroupNotes }) => {
           <textarea
             value={noteInput}
             onChange={(e) => setNoteInput(e.target.value)}
-            placeholder='Enter your note here...'
+            placeholder='Enter your text here...'
             onKeyDown={handleKeyDown}
             onFocus={handleTextAreaFocus}
             onBlur={handleTextAreaBlur}
